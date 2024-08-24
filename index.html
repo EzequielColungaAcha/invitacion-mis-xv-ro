@@ -122,32 +122,6 @@
     </div>
     <!-- END PRELOADER AREA -->
 
-    <!-- Modal musica fondo -->
-    <div id="modalMusica" class="modal fade" tabindex="-1">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <p>Bienvenidos a la invitación de Ro</p>
-
-            <span>La música de fondo es parte de la experiencia</span>
-
-            <br />
-            <a class="boton" id="play-music-modal" href=""
-              >Ingresar con música</a
-            >
-            <a
-              class="boton"
-              data-dismiss="modal"
-              aria-label="Close"
-              id=""
-              href=""
-              >Ingresar sin música</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Portada -->
     <section class="portada">
       <div class="d-md-flex">
@@ -388,19 +362,12 @@
 
     <!-- Musica -->
 
-    <div id="controlador-musica">
-      <div
-        id="play-pause-music"
-        data-estado-music="pause"
-        class="music-anim-icon"
-      ></div>
-    </div>
-
-    <div id="player-musica-fondo"></div>
+    <audio autoplay loop>
+      <source src="./Clocks.mp3" type="audio/mpeg" />
+    </audio>
 
     <!-- Scripts -->
     <!-- Varaibles para JS desde config -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
       // Idioma
       var langJs = 'es';
@@ -446,8 +413,6 @@
 
     <!-- Lottie -->
     <script src="js/lottie_svg.min.js"></script>
-    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
-    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script> -->
 
     <!-- Animacion loader -->
     <script>
@@ -515,87 +480,6 @@
     </script>
 
     <!-- Modal musica inicio -->
-
-    <script>
-      // Al cargar abro modal
-      prealoaderOption.on('load', function () {
-        $('#modalMusica').modal({
-          backdrop: 'static',
-        });
-      });
-
-      // Btn play music modal
-      $('body').on('click', '#play-music-modal', function (e) {
-        e.preventDefault();
-
-        $('#play-pause-music').attr('data-estado-music', 'play');
-        animMusicAnimIcon.play();
-        player.playVideo();
-
-        $('#modalMusica').modal('hide');
-      });
-    </script>
-
-    <!-- Musica de fondo -->
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = 'https://www.youtube.com/iframe_api';
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player-musica-fondo', {
-          height: '10',
-          width: '10',
-          playerVars: {
-            playlist: 'PFW2uSCZ0uE',
-            loop: 1,
-          },
-          events: {
-            onReady: onPlayerReady,
-          },
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.setVolume(80);
-        // event.target.playVideo();
-      }
-
-      // Pausar video
-      function pauseVideo() {
-        player.pauseVideo();
-      }
-
-      // Click en controlador musica
-      $('body').on('click', '#play-pause-music', function (e) {
-        e.preventDefault();
-
-        // Estado actual
-        var estadoMusic = $(this).attr('data-estado-music');
-
-        // Pause music
-        if (estadoMusic == 'pause') {
-          $(this).attr('data-estado-music', 'play');
-          animMusicAnimIcon.play();
-          player.playVideo();
-        }
-
-        // Play music
-        if (estadoMusic == 'play') {
-          $(this).attr('data-estado-music', 'pause');
-          player.pauseVideo();
-          animMusicAnimIcon.stop();
-        }
-      });
-    </script>
 
     <!-- Animaciones de diseño -->
     <script>
